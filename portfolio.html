@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitali Suthar | Java Backend Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Reset & Variables --- */
+        :root {
+            --primary: #5382a1; 
+            --accent: #f89820; /* Java Orange */
+            --dark: #1a1a1a;
+            --dark-card: #252525;
+            --light: #f4f4f9;
+            --text-dark: #333;
+            --text-light: #fff;
+            --text-gray: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background: var(--dark);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--text-light); }
+        .logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding-top: 60px;
+        }
+
+        .hero-text h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 700; }
+        .hero-text h2 { font-size: 1.5rem; color: var(--accent); margin-bottom: 20px; font-weight: 500; }
+        .hero-text p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: var(--text-light);
+            font-weight: bold;
+            border-radius: 5px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        .btn:hover { background: transparent; border-color: var(--text-light); transform: translateY(-2px); }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-light);
+            margin-left: 10px;
+        }
+        .btn-outline:hover { background: var(--text-light); color: var(--dark); }
+
+        /* --- Sections General --- */
+        section { padding: 80px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0;
+        }
+
+        /* --- About Section --- */
+        #about { background: #fff; }
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .about-content p { margin-bottom: 20px; font-size: 1.1rem; color: #555; }
+
+        /* --- NEW PROFESSIONAL SKILLS SECTION --- */
+        #skills {
+            background-color: #0f1014; /* Deep dark background */
+            color: white;
+            padding: 100px 0;
+        }
+        
+        #skills .section-title { color: white; }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .skill-category-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary);
+        }
+
+        .skill-category-title {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: #fff;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .skill-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+        
+        /* Custom Colors for specific icons */
+        .fa-html5 { color: #e34c26; }
+        .fa-css3-alt { color: #264de4; }
+        .fa-js { color: #f0db4f; }
+        .fa-react { color: #61dafb; }
+        .fa-node { color: #68a063; }
+        .fa-java { color: #f89820; }
+        .fa-github { color: #fff; }
+
+        .skill-item span {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .skill-category-card:hover .skill-item i {
+            transform: scale(1.1);
+        }
+
+
+        /* --- Experience Section --- */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--primary);
+}
+
+.timeline-item {
+    position: relative;
+    background: #fff;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -38px;
+    top: 25px;
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+        /* --- Projects Section --- */
+        #projects { background: #fff; }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        
+        .project-content { padding: 25px; }
+        .project-content h3 { color: var(--dark); margin-bottom: 10px; font-size: 1.4rem; }
+        .tech-stack { margin: 15px 0; }
+        .tech-tag { 
+            display: inline-block; 
+            background: #eef2f5; 
+            color: var(--primary); 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            font-weight: 600;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        /* --- Contact Section --- */
+        #contact { background: var(--dark); color: var(--text-light); text-align: center; }
+        .contact-details { margin-top: 40px; font-size: 1.2rem; }
+        .contact-details p { margin: 15px 0; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .contact-btn {
+            margin-top: 40px;
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        .contact-btn:hover { transform: scale(1.05); background: #e08513; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #000;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Mitali<span>.dev</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container hero-text">
+            <h1>Mitali Suthar</h1>
+           <h2>Aspiring Full Stack Developer</h2>
+<p>Passionate about web development and building user-friendly applications using Java, Spring Boot, React, MySQL, and Python.</p>
+ <a href="#contact" class="btn">Get in Touch</a>
+            <a href="#projects" class="btn btn-outline">View Projects</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I am a final year B.Tech Computer Science student at the <strong>College of Technology and Engineering (CTAE), Udaipur</strong>. I also hold a Diploma in Engineering from Vidya Bhawan Polytechnic with an exceptional <strong>9.88 CGPA</strong>.</p>
+<p>I am passionate about web development and software engineering. I have experience working with Java, Spring Boot, MySQL, React, JavaScript, and Python through academic projects and internships. I enjoy learning new technologies, solving problems, and developing practical software solutions.</p>            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Frontend</h3>
+                    <div class="skill-icons">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-bootstrap"></i>
+                            <span>Bootstrap</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Backend</h3>
+                    <div class="skill-icons">
+                        <div class="skill-item">
+                            <i class="fas fa-leaf"></i> <span>Spring Boot</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-node"></i>
+                            <span>Node.js</span>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-envira"></i>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Tools & Platforms</h3>
+                    <div class="skill-icons">
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>VS Code</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Languages</h3>
+                    <div class="skill-icons">
+                        <div class="skill-item">
+                            <i class="fab fa-java"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-c"></i>
+                            <span>C</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-file-code"></i>
+                            <span>C++</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                <span class="timeline-date">June 2026</span>
+                <h3>Python Programming Intern</h3>
+                <h4>CodeAlpha</h4>
+                <p>• Developed Python-based projects including Hangman Game, Stock Portfolio Tracker, and Basic Chatbot.</p>
+                <p>• Applied core Python concepts such as functions, loops, dictionaries, file handling, and conditional statements.</p>
+                <p>• Enhanced problem-solving and debugging skills through project-based learning and practical implementation.</p>
+            </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">June 2025 - July 2025</span>
+                    <h3>Java Intern</h3>
+                    <h4>Alphagate LLM Pvt. Ltd.</h4>
+                    <p>• Contributed to the development of a Hotel Management System using Java Spring Boot and MySQL.</p>
+                    <p>• Designed and implemented frontend modules for room booking, customer management, and dashboard functionalities.</p>
+                    <p>• Integrated frontend components with REST APIs and database services while assisting in testing and debugging.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">March 2024 - Sept 2024</span>
+                    <h3>React Native Intern</h3>
+                    <h4>Croco Code Pvt. Ltd.</h4>
+                    <p>• Developed cross-platform mobile application features.</p>
+                    <p>• Designed responsive UI components and managed navigation.</p>
+                    <p>• Gained full lifecycle experience in mobile app development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Hotel Management System</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                        <p>Designed and developed the frontend of a Hotel Management System with features such as room booking, customer management, and dashboard views. Integrated user interfaces with backend services and database functionality.</p>                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Fees Management System</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <p>Automated system to manage student fee records and payments. Streamlined the reporting process and significantly reduced manual data entry errors.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>React Native Mobile App</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Android</span>
+                        </div>
+                        <p>A cross-platform mobile application featuring smooth navigation, custom UI components, and optimized performance for various screen sizes.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: #fff;">Let's Connect</h2>
+            <p>I am currently available for Graduate Engineer Trainee roles and full-time opportunities.</p>
+            
+            <div class="contact-details">
+                <p><i class="fas fa-map-marker-alt"></i> Udaipur, Rajasthan</p>
+                <p><i class="fas fa-envelope"></i> sutharmitali351@gmail.com</p>
+                <p><i class="fab fa-linkedin"></i> linkedin.com/in/mitali-suthar</p>
+            </div>
+
+            <a href="mailto:sutharmitali351@gmail.com" class="contact-btn">Send Me an Email</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mitali Suthar. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
